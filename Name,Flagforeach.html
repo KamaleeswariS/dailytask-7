@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Name, Capital, Flag</title>
+</head>
+<body>
+    <script>
+        //// C) Print the following details name, capital, flag, using forEach method
+
+//1st step : create a XHR object
+var requestt = new XMLHttpRequest();
+//2nd step: API URL
+//.open method
+//2 parameters
+requestt.open("GET","https://restcountries.com/v2/all");
+//3rd step : establishing the bridge
+requestt.send();
+//4th step : once the data sucessfully received from server
+//onload is an event
+//when we use :  once the data / server is showing 200 sataus code
+requestt.onload=function(){
+    var resultt=JSON.parse(requestt.response);
+   resultt.forEach(element => {
+    console.log(element.name);
+        console.log(element.capital);
+        console.log(element.flag); 
+
+   });
+}
+</script>
+</body>
+</html>
+

@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>US Dollars as currency</title>
+</head>
+<body>
+    <script>
+// E) Print the country which uses US Dollars as currency
+
+//1st step : create a XHR object
+var req = new XMLHttpRequest();
+//2nd step: API URL
+//.open method
+//2 parameters
+req.open("GET","https://restcountries.com/v2/all");
+//3rd step : establishing the bridge
+req.send();
+//4th step : once the data sucessfully received from server
+//onload is an event
+//when we use :  once the data / server is showing 200 sataus code
+req.onload=function(){
+    var res=JSON.parse(req.response);
+   var currency = res.filter((element) => {
+     for(let key in element.currencies){
+        if(element.currencies[key].code === "USD"){
+            return element;
+        }
+     }
+   })
+        console.log(currency);
+    }
+</script>
+</body>
+</html>
